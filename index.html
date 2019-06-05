@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Isabelle's Glorious Website</title>
+         <style>
+            body {
+                background: #b3dfef;
+                color: #82d689;
+                padding: 10px;
+                font-family: display;
+            }
+            header {
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+            #all-contents {
+                max-width: 800px;
+                margin: auto;
+            }
+    
+            /* navigation menu */
+            nav {
+                background: #ffd970;
+                margin: 0 auto; margin-bottom: 20px;
+                display: flex;
+                padding: 10px;
+            }
+            nav header {
+                display: flex;
+                align-items: center;
+                color: #82d689;
+                flex: 1;
+            }
+            nav ul {
+                list-style-image: none;
+            }
+            nav li {
+                display: inline-block;
+                padding: 0 10px;
+            }
+            nav a {
+                text-decoration: none;
+                color: #fff;
+            }
+    
+            /* main container area beneath menu */
+            main {
+                background: #ffecb5;
+                display: flex;
+            }
+            img {
+                border-radius:30px;
+            }
+            .sidebar {
+                margin-right: 25px;
+                padding: 10px;
+            }
+            .sidebar img {
+                width: 200px;
+            }
+            .content {
+                flex: 1;
+                padding: 15px;
+            }
+            .interests header {
+                font-size: 1.25em;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="all-contents">
+            <nav>
+                <header>Isabelle's Glorious Website</header>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+            </nav>
+            <main>
+                <div class="sidebar">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/41TErMtvHSL.jpg"></img>
+                </div>
+                <div class="content">
+                    <header>Isabelle Chapman</header>
+                    <p>Student at Early College Academy
+                    <section class="interests">
+                        <header>Interests</header>
+                        <ul>
+                            <li>Reading</li>
+                            <li>Useless Information</li>
+                            <li>Board Games</li>
+                        </ul>
+                    </section>
+                    </p>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
