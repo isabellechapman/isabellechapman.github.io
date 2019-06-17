@@ -36,10 +36,8 @@
         
         // example:            //(horizontal, height) 1=left and top
         collectable.create(type.steve, 210, 200)
-        collectable.create(type.max, 800, 480)
         collectable.create(type.grace, 800, 330)
         collectable.create(type.kennedi, 470, 100)
-        
         
         
         // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
