@@ -37,7 +37,7 @@ var init = function (window) {
     
     var help = draw.textfield('MOVES || up: jump | right: flying jump | down: duck | space: fire | q your mom!', 
         '20px Arial',
-        '#ccc', 'left');
+        'grey', 'left');
     help.x = 10;
     help.y = ground.y + ground.getBounds().height + 10;
     view.addChild(help);
@@ -76,7 +76,8 @@ var init = function (window) {
     view.addChild(hud);
     window.hud = hud;
     // TODO 6 : create game manager
-
+    var game = opspark.createGameManager(app,hud);
+    opspark.runLevelInGame(game);
 
 };
 
