@@ -34,7 +34,10 @@ var level01 = function (window) {
             rewards: [
                 {type: 'coin',x:900,y:groundY - 150,speed:2},
                 {type: 'coin',x:1575,y:groundY - 150,speed:2},
-                {type: 'coin',x:2175,y:groundY - 150,speed:2}
+                {type: 'coin',x:2175,y:groundY - 150,speed:2},
+                {type: 'coin',x:2600,y:groundY - 150,speed:2},
+                {type: 'coin',x:2650,y:groundY - 150,speed:2},
+                {type: 'coin',x:2700,y:groundY - 150,speed:2},
             ]
         };
         window.levelData = levelData;
@@ -127,7 +130,7 @@ var level01 = function (window) {
                 game.changeIntegrity(-20);
             };
             enemy.onProjectileCollision = function() {
-                game.increaseScore(100);
+                game.increaseScore(1000);
                 enemy.fadeOut();
             };
         }
@@ -150,7 +153,7 @@ var level01 = function (window) {
             reward.velocityX =-speed;
             game.addGameItem(reward);
             reward.onPlayerCollision = function() {
-                game.increaseScore(200);
+                game.increaseScore(1000);
                 reward.shrink();
             };
         }
