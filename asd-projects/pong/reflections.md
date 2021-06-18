@@ -18,7 +18,7 @@
   - Which will be animated? (the box)
         the paddles, the ball, the scores
 - What data will you need to manage each game component? For example, in Bouncing Box, the data values were `positionX`, `speedX`, and `points`.
-    paddle1PositionY, paddle2PositionY, ballPositionX, ballPositionY, ballSpeedX, ballSpeedY, points
+    paddle1PositionY, paddle2PositionY, ballPositionX, ballPositionY, ballSpeedX, ballSpeedY, points1, points2
 
 ### Events / Logic 
 - What events will occur in this game? (timer events, keyboard events, clicking events?)
