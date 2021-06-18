@@ -15,19 +15,20 @@ function runProgram(){
   var paddle1 = information("#paddle1");
   var paddle2 = information("#paddle2");
   var board = information ("#board");
-  var score1 = information("#score1");
-  var score2 = information("#score2");
 
   var text1 = 0;
   var text2 = 0;
   var pointTotal1 = 0;
   var pointTotal2 = 0;
-  var maxX = board.width - ball.width;
-  var maxY = board.height - ball.height;
+  var maxBallX = board.width - ball.width;
+  var maxBallY = board.height - ball.height;
   var startingX = 709;
   var startingY = 316;
-  ball.speedX = 5 * positiveOrNegative();
-  ball.speedY = 4 * positiveOrNegative();
+  var maxPaddleY = board.height - paddle1.height;
+  var startingSpeedX = 5;
+  var startingSpeedY = 4;
+  ball.speedX = startingSpeedX * positiveOrNegative();
+  ball.speedY = startingSpeedY * positiveOrNegative();
 
   // Game Item Objects
   var key = {
@@ -51,7 +52,7 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    handleGameItemMovement();
+    handleGameItem();
     redrawGameItem();
     winner();
   }
@@ -82,7 +83,8 @@ function runProgram(){
 
   // tells the paddles what to do when a key is released
   function handleKeyUp(event) {
-    // speed changes for the first paddle when a key is pressed
+
+    // speed changes for the first paddle when a key is released
     if (event.which === key.w) {
       paddle1.speedY = 0;
     }
@@ -90,7 +92,7 @@ function runProgram(){
       paddle1.speedY = 0;
     }
 
-    // speed changes for the second paddle when a key is pressed
+    // speed changes for the second paddle when a key is released
     if (event.which === key.up) {
       paddle2.speedY = 0;
     }
@@ -113,17 +115,16 @@ function runProgram(){
       width: $(id).width(),
       height: $(id).height(),
       speedX: 0,
-      speedY: 0,
-      html: $(id).html(),
+      speedY: 0
     };
   }
 
-  function handleGameItemMovement() {
+  function handleGameItem() {
 
-    // reposition the ball
+    // handle the ball's movement and interactions
     ball.x += ball.speedX;                    // update the position of the ball along the x-axis
     ball.y += ball.speedY;                    // update the position of the ball along the y-axis
-    if (ball.y >= maxY) {                     // prevents the ball from leaving the bottom of the board
+    if (ball.y >= maxBallY) {                 // prevents the ball from leaving the bottom of the board
       ball.y -= ball.speedY;
       ball.speedY *= -1;
     }
@@ -131,29 +132,28 @@ function runProgram(){
       ball.y -= ball.speedY;
       ball.speedY *= -1;
     }
-    if (ball.x >= maxX) {                     // controls what happens when the ball hits the right wall
+    if (ball.x >= maxBallX) {                 // controls what happens when the ball hits the right wall
       ball.x = startingX;
       ball.y = startingY;
-      ball.speedX = 7 * positiveOrNegative();
-      ball.speedY = 5 * positiveOrNegative();
+      ball.speedX = startingSpeedX * positiveOrNegative();
+      ball.speedY = startingSpeedY * positiveOrNegative();
       pointTotal1 += 1;
-      console.log(pointTotal1);
       $("#points1").text(text1 += 1);
     }
     else if (ball.x <= 0) {                   // controls what happens when the ball hits the left wall
       ball.x = startingX;
       ball.y = startingY;
-      ball.speedX = 7 * positiveOrNegative();
-      ball.speedY = 5 * positiveOrNegative();
+      ball.speedX = startingSpeedX * positiveOrNegative();
+      ball.speedY = startingSpeedY * positiveOrNegative();
       pointTotal2 += 1;
       console.log(pointTotal2);
       $("#points2").text(text2 += 1);
     }
 
-    // reposition the first paddle
+    // handle the first paddle's movement and interactions
     paddle1.y += paddle1.speedY;              // update the position of the first paddle
-    if (paddle1.y >= 350) {                   // prevents the first paddle from leaving the bottom of the board
-      paddle1.y = 350;
+    if (paddle1.y >= maxPaddleY) {            // prevents the first paddle from leaving the bottom of the board
+      paddle1.y = maxPaddleY;
     }
     else if (paddle1.y <= 0) {                // prevents the paddle from leaving the top of the board
       paddle1.y = 0;
@@ -165,10 +165,10 @@ function runProgram(){
       ball.speedY += 2;
     };
     
-    // reposition the second paddle
+    // handle the second paddle's movement and interactions
     paddle2.y += paddle2.speedY;              // update the position of the second paddle
-    if (paddle2.y >= 350) {                   // prevents the second paddle fro leaving the bottom of the board
-      paddle2.y = 350;
+    if (paddle2.y >= maxPaddleY) {            // prevents the second paddle fro leaving the bottom of the board
+      paddle2.y = maxPaddleY;
     }
     else if (paddle2.y <= 0) {                // prevents the second paddle from leaving the top of the board
       paddle2.y = 0;
@@ -208,6 +208,7 @@ function runProgram(){
     ball.rightX = ball.x + ball.width;
     ball.bottomY = ball.y + ball.height;
 
+    // returns true if the ball and paddle collide
     if (paddle.leftX < ball.rightX && paddle.rightX > ball.leftX && paddle.topY < ball.bottomY && paddle.bottomY > ball.topY) {
       return true;
     }
